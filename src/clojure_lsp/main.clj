@@ -223,13 +223,7 @@
             (CompletableFuture/completedFuture
               result)))))
 
-  (^CompletableFuture codeAction [_ ^CodeActionParams params]
-    (go :codeAction
-        (end
-          (CompletableFuture/completedFuture
-            (let [start (.getStart (.getRange params))]
-              [(Command. "add-missing-libspec" "add-missing-libspec"
-                         [(interop/document->decoded-uri (.getTextDocument params)) (.getLine start) (.getCharacter start)])])))))
+  (^CompletableFuture codeAction [_ ^CodeActionParams params])
 
   (^CompletableFuture definition [this ^TextDocumentPositionParams params]
     (go :definition
